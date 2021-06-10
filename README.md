@@ -1,6 +1,6 @@
 # cqrs
 A simple cqrs - event sourcing project
 
-based on the concise article of Nebrass Lamouchi blog:
+based on the excellent sample of Nebrass Lamouchi repo:
 
-https://blog.nebrass.fr/playing-with-cqrs-and-event-sourcing-in-spring-boot-and-axon/
+https://github.com/nebrass/playing-with-cqrs-and-event-sourcing-in-spring-boot-and-axon
