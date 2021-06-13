@@ -2,6 +2,7 @@ package com.xzinoviou.cqrs.controller.query;
 
 import com.xzinoviou.cqrs.domain.jpa.Account;
 import com.xzinoviou.cqrs.service.query.AccountQueryService;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,5 +26,10 @@ public class AccountQueryController {
   @GetMapping("/{accountId}")
   public CompletableFuture<Account> getAccountById(@PathVariable String accountId) {
     return accountQueryService.getAccountById(accountId);
+  }
+
+  @GetMapping("/{accountId}/events")
+  public List<Object> getEventsByAccountId(@PathVariable String accountId) {
+    return accountQueryService.getAllEventsByAccountId(accountId);
   }
 }
