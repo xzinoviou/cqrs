@@ -37,7 +37,7 @@ public class AccountCommandController {
   }
 
   @PutMapping("/debit")
-  public CompletableFuture<String> debit(MoneyAmountDto dto) {
+  public CompletableFuture<String> debit(@RequestBody MoneyAmountDto dto) {
     return accountCommandService.debit(dto);
   }
 }
