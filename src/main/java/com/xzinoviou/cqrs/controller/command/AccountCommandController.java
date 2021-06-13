@@ -25,13 +25,18 @@ public class AccountCommandController {
   }
 
   @PostMapping
-  public CompletableFuture<Account> create(AccountCreateDto dto){
+  public CompletableFuture<Account> create(AccountCreateDto dto) {
     return accountCommandService.create(dto);
   }
 
 
   @PutMapping("/credit")
-  public CompletableFuture<String> credit(MoneyAmountDto dto){
+  public CompletableFuture<String> credit(MoneyAmountDto dto) {
     return accountCommandService.credit(dto);
+  }
+
+  @PutMapping("/debit")
+  public CompletableFuture<String> debit(MoneyAmountDto dto) {
+    return accountCommandService.debit(dto);
   }
 }
