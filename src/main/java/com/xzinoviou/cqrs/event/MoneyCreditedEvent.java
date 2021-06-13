@@ -1,4 +1,4 @@
-package com.xzinoviou.cqrs.domain.event;
+package com.xzinoviou.cqrs.event;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

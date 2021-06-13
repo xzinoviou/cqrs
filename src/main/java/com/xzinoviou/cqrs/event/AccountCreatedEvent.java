@@ -1,4 +1,4 @@
-package com.xzinoviou.cqrs.domain.event;
+package com.xzinoviou.cqrs.event;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -9,10 +9,11 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class MoneyDebitedEvent {
+public class AccountCreatedEvent {
 
   private final String id;
 
-  private final BigDecimal debitAmount;
+  private final BigDecimal initialBalance;
 
+  private final String owner;
 }
