@@ -36,10 +36,12 @@ public class AccountAggregate {
 
   @CommandHandler
   public AccountAggregate(CreateAccountCommand command) {
-    new AccountCreatedEvent(
-        command.getId(),
-        command.getInitialBalance(),
-        command.getOwner()
+    AggregateLifecycle.apply(
+        new AccountCreatedEvent(
+            command.getId(),
+            command.getInitialBalance(),
+            command.getOwner()
+        )
     );
   }
 
