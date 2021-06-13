@@ -1,6 +1,7 @@
 package com.xzinoviou.cqrs.projector;
 
 import com.xzinoviou.cqrs.domain.jpa.Account;
+import com.xzinoviou.cqrs.domain.query.AccountQuery;
 import com.xzinoviou.cqrs.event.AccountCreatedEvent;
 import com.xzinoviou.cqrs.event.MoneyCreditedEvent;
 import com.xzinoviou.cqrs.event.MoneyDebitedEvent;
@@ -8,6 +9,7 @@ import com.xzinoviou.cqrs.repository.AccountRepository;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
 /**
@@ -79,5 +81,12 @@ public class AccountProjector {
     } catch (Exception e) {
       log.debug("Account debit failed : {} , with payload : {}", e.getMessage(), event);
     }
+  }
+
+  @QueryHandler
+  public Account handle(AccountQuery query) {
+    log.debug("Account query with payload : {}", query);
+
+    return accountRepository.findById(query.getAccountId()).orElse(null);
   }
 }
