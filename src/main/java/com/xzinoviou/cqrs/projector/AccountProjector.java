@@ -42,7 +42,7 @@ public class AccountProjector {
   }
 
   @EventHandler
-  public void on(MoneyCreditedEvent event){
+  public void on(MoneyCreditedEvent event) {
     log.debug("Account credit command with payload : {}", event);
 
     Optional<Account> optionalBankAccount = accountRepository.findById(event.getId());
@@ -58,6 +58,26 @@ public class AccountProjector {
       accountRepository.save(account);
     } catch (Exception e) {
       log.debug("Account credit failed : {} , with payload : {}", e.getMessage(), event);
+    }
+  }
+
+  @EventHandler
+  public void on(MoneyDebitedEvent event) {
+    log.debug("Account debit command with payload : {}", event);
+
+    Optional<Account> optionalBankAccount = accountRepository.findById(event.getId());
+
+    if (optionalBankAccount.isEmpty()) {
+      throw new RuntimeException("Account not found");
+    }
+
+    Account account = optionalBankAccount.get();
+    account.setBalance(account.getBalance().subtract(event.getDebitAmount()));
+
+    try {
+      accountRepository.save(account);
+    } catch (Exception e) {
+      log.debug("Account debit failed : {} , with payload : {}", e.getMessage(), event);
     }
   }
 }
